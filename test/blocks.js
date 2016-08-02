@@ -46,7 +46,7 @@ var blockIndexes = {
 describe('Blocks', function() {
   describe('/blocks/:blockHash route', function() {
     var insight = {
-      'hash': '0000000000000afa0c3c0afd450c793a1e300ec84cbe9555166e06132f19a8f7',
+      'hash': '29619b34616354bdf6d14f44fd266300e5edcbdd143df28f0d8e5f9d1f1c182c',
       'confirmations': 119,
       'size': 1011,
       'height': 533974,
@@ -60,7 +60,7 @@ describe('Blocks', function() {
       'time': 1440987503,
       'nonce': 1868753784,
       'bits': '1a0cf267',
-      'difficulty': 1295829.93087696,
+      'difficulty': 3.0433117726974157e+114,
       'chainwork': '0000000000000000000000000000000000000000000000054626b1839ade284a',
       'previousblockhash': '00000000000001a55f3214e9172eb34b20e0bc5bd6b8007f3f149fca2c8991a4',
       'nextblockhash': '000000000001e866a8057cde0c650796cb8a59e0e6038dc31c69d7ca6649627d',

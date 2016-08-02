@@ -22,7 +22,7 @@ describe('Transactions', function() {
             },
             'sequence': 4294967295,
             'n': 0,
-            'addr': 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+            'addr': 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
             'valueSat': 18535505,
             'value': 0.18535505,
             'doubleSpentTxID': null,
@@ -39,7 +39,7 @@ describe('Transactions', function() {
             },
             'sequence': 4294967295,
             'n': 1,
-            'addr': 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+            'addr': 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
             'valueSat': 16419885,
             'value': 0.16419885,
             'doubleSpentTxID': null,
@@ -58,7 +58,7 @@ describe('Transactions', function() {
               'reqSigs': 1,
               'type': 'pubkeyhash',
               'addresses': [
-                'mnQ4ZaGessNgdxmWPxbTHcfx4b8R6eUr1X'
+                'yTCZ7iv1U6p6MXp278FhMFZmKDbmgx89oX'
               ]
             },
             'spentTxId': null,
@@ -74,7 +74,7 @@ describe('Transactions', function() {
               'reqSigs': 1,
               'type': 'pubkeyhash',
               'addresses': [
-                'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f'
+                'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet'
               ]
             },
             'spentTxId': '614fe1708825f9c21732394e4784cc6808ac1d8b939736bfdead970567561eec',
@@ -108,7 +108,7 @@ describe('Transactions', function() {
         feeSatoshis: 30000,
         inputs: [
           {
-            address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+            address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
             prevTxId: '87c9b0f27571fff14b8c2d69e55614eacedd0f59fcc490b721320f9dae145aad',
             outputIndex: 0,
             sequence: 4294967295,
@@ -117,7 +117,7 @@ describe('Transactions', function() {
             satoshis: 18535505,
           },
           {
-            address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+            address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
             prevTxId: 'd8a10aaedf3dd33b5ddf8979273f3dbf61e4638d1aa6a93c59ea22bc65ac2196',
             outputIndex: 0,
             sequence: 4294967295,
@@ -131,10 +131,10 @@ describe('Transactions', function() {
             satoshis: 21247964,
             script: '76a9144b7b335f978f130269fe661423258ae9642df8a188ac',
             scriptAsm: 'OP_DUP OP_HASH160 4b7b335f978f130269fe661423258ae9642df8a1 OP_EQUALVERIFY OP_CHECKSIG',
-            address: 'mnQ4ZaGessNgdxmWPxbTHcfx4b8R6eUr1X'
+            address: 'yTCZ7iv1U6p6MXp278FhMFZmKDbmgx89oX'
           },
           {
-            address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+            address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
             satoshis: 13677426,
             scriptAsm: 'OP_DUP OP_HASH160 6efcf883b4b6f9997be9a0600f6c095fe2bd2d92 OP_EQUALVERIFY OP_CHECKSIG',
             script: '76a9146efcf883b4b6f9997be9a0600f6c095fe2bd2d9288ac',
@@ -241,7 +241,7 @@ describe('Transactions', function() {
           ],
           outputs: [
             {
-              address: 'mq4oDPjmNWnBxbzx7qouzhpCSTMePUtYDF',
+              address: 'yVsHmYP7xkDbgB3Tq1UA4Li1h5pzzhYTys',
               script: '76a91468bedce8982d25c3b6b03f6238cbad00378b8ead88ac',
               scriptAsm: 'OP_DUP OP_HASH160 68bedce8982d25c3b6b03f6238cbad00378b8ead OP_EQUALVERIFY OP_CHECKSIG',
               satoshis: 1250040000
@@ -262,7 +262,7 @@ describe('Transactions', function() {
           inputs: [
             {
               satoshis: 18535505,
-              address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+              address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
               script: '4830450221008e5df62719cd92d7b137d00bbd27f153f2909bcad3a300960bc1020ec6d5e961022039df51600ff4fb5da5a794d1648c6b47c1f7d277fd5877fb5e52a730a3595f8c014104eb1e0ccd9afcac42229348dd776e991c69551ae3474340fada12e787e51758397e1d3afdba360d6374261125ea3b6ea079a5f202c150dfd729e1062d9176a307',
               scriptAsm: '30450221008e5df62719cd92d7b137d00bbd27f153f2909bcad3a300960bc1020ec6d5e961022039df51600ff4fb5da5a794d1648c6b47c1f7d277fd5877fb5e52a730a3595f8c01 04eb1e0ccd9afcac42229348dd776e991c69551ae3474340fada12e787e51758397e1d3afdba360d6374261125ea3b6ea079a5f202c150dfd729e1062d9176a307',
               prevTxId: '87c9b0f27571fff14b8c2d69e55614eacedd0f59fcc490b721320f9dae145aad',
@@ -270,7 +270,7 @@ describe('Transactions', function() {
               sequence: 4294967295
             },
             {
-              address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+              address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
               script: '4730440220761464d7bab9515d92260762a97af82a9b25d202d8f7197b1aaec81b6fed541f022059f99606de6b06e17b2cd102dceb3807ebdd9e777a5b77c9a0b3672f5eabcb31014104eb1e0ccd9afcac42229348dd776e991c69551ae3474340fada12e787e51758397e1d3afdba360d6374261125ea3b6ea079a5f202c150dfd729e1062d9176a307',
               scriptAsm: '30440220761464d7bab9515d92260762a97af82a9b25d202d8f7197b1aaec81b6fed541f022059f99606de6b06e17b2cd102dceb3807ebdd9e777a5b77c9a0b3672f5eabcb3101 04eb1e0ccd9afcac42229348dd776e991c69551ae3474340fada12e787e51758397e1d3afdba360d6374261125ea3b6ea079a5f202c150dfd729e1062d9176a307',
               satoshis: 16419885,
@@ -281,7 +281,7 @@ describe('Transactions', function() {
           ],
           outputs: [
             {
-              address: 'mnQ4ZaGessNgdxmWPxbTHcfx4b8R6eUr1X',
+              address: 'yTCZ7iv1U6p6MXp278FhMFZmKDbmgx89oX',
               script: '76a9144b7b335f978f130269fe661423258ae9642df8a188ac',
               scriptAsm: 'OP_DUP OP_HASH160 4b7b335f978f130269fe661423258ae9642df8a1 OP_EQUALVERIFY OP_CHECKSIG',
               satoshis: 21247964
@@ -289,7 +289,7 @@ describe('Transactions', function() {
             {
               script: '76a9146efcf883b4b6f9997be9a0600f6c095fe2bd2d9288ac',
               scriptAsm: 'OP_DUP OP_HASH160 6efcf883b4b6f9997be9a0600f6c095fe2bd2d92 OP_EQUALVERIFY OP_CHECKSIG',
-              address: 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+              address: 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
               satoshis: 13677426,
               spentTxId: '614fe1708825f9c21732394e4784cc6808ac1d8b939736bfdead970567561eec',
               spentIndex: 1,
@@ -310,7 +310,7 @@ describe('Transactions', function() {
           hash: '2e01c7a4a0e335112236b711c4aaddd02e8dc59ba2cda416e8f80ff06dddd7e1',
           inputs: [
             {
-              address: 'mgZK8zpudWoAaAwpLQSgc9t9PJJyEBpBdJ',
+              address: 'yMMoh9UGDkEaHjzL3a6vfnmxdvnKshFtms',
               satoshis: 990000,
               script: '483045022100f67cffc0ae23adb236ff3edb4a9736e277605db30cc7708dfab8cf1e1483bbce022052396aa5d664ec1cb65992c423fd9a17e94dc7af328d2d559e90746dd195ca5901210346134da14907581d8190d3980caaf46d95e4eb9c1ca8e70f1fc6007fefb1909d',
               scriptAsm: '3045022100f67cffc0ae23adb236ff3edb4a9736e277605db30cc7708dfab8cf1e1483bbce022052396aa5d664ec1cb65992c423fd9a17e94dc7af328d2d559e90746dd195ca5901 0346134da14907581d8190d3980caaf46d95e4eb9c1ca8e70f1fc6007fefb1909d',
@@ -319,7 +319,7 @@ describe('Transactions', function() {
               prevTxId: '7127225e5b89eb288144c76fe907970c1963ea0f0108295ee8ffb7dfb63c0d06'
             },
             {
-              address: 'n4oM7bPuC4ZPdCEDvtw9xGYQC7jmi5S6F4',
+              address: 'yjbqfk3FnHzoLmGje4bQ1uSDSkD8KEYU2d',
               satoshis: 1960000,
               script: '473044022077222a91cda23af69179377c62d84a176fb12caff6c5cbf6ae9e5957ff3b1afe0220768edead76819228dcba18cca3c9a5a5d4c32919720f21df21a297ba375bbe5c012103371ea5a4dfe356b3ea4042a537d7ab7ee0faabd43e21b6cc076fda2240629eee',
               scriptAsm: '3044022077222a91cda23af69179377c62d84a176fb12caff6c5cbf6ae9e5957ff3b1afe0220768edead76819228dcba18cca3c9a5a5d4c32919720f21df21a297ba375bbe5c01 03371ea5a4dfe356b3ea4042a537d7ab7ee0faabd43e21b6cc076fda2240629eee',
@@ -336,7 +336,7 @@ describe('Transactions', function() {
               satoshis: 1940000,
               script: '76a9148e451eec7ca0a1764b4ab119274efdd2727b3c8588ac',
               scriptAsm: 'OP_DUP OP_HASH160 8e451eec7ca0a1764b4ab119274efdd2727b3c85 OP_EQUALVERIFY OP_CHECKSIG',
-              address: 'mtVD3tdifBNujYzZ5N7PgXfKk4Bc85tDKA'
+              address: 'yZHhc3H5FQpKT834nXmdkAZ8zgexjejyYq'
             },
             {
               spentTxId: '418d3eb60275957b3456b96902e908abf962e71be4c4f09486564254664951bc',
@@ -344,7 +344,7 @@ describe('Transactions', function() {
               spentHeight: 200,
               script: '76a914d0fce8f064cd1059a6a11501dd66fe42368572b088ac',
               scriptAsm: 'OP_DUP OP_HASH160 d0fce8f064cd1059a6a11501dd66fe42368572b0 OP_EQUALVERIFY OP_CHECKSIG',
-              address: 'mzZypShcs1B35udnkqeYeJy8rUdgHDDvKG',
+              address: 'yfNUNbLyTEcSoUgJU1Jnhwrx7772vS3Ued',
               satoshis: 1000000
             }
           ]
@@ -390,7 +390,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mq4oDPjmNWnBxbzx7qouzhpCSTMePUtYDF'
+                    'yVsHmYP7xkDbgB3Tq1UA4Li1h5pzzhYTys'
                   ]
                 },
                 'spentTxId': null,
@@ -421,7 +421,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967295,
                 'n': 0,
-                'addr': 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+                'addr': 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
                 'valueSat': 18535505,
                 'value': 0.18535505,
                 'doubleSpentTxID': null
@@ -435,7 +435,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967295,
                 'n': 1,
-                'addr': 'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f',
+                'addr': 'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet',
                 'valueSat': 16419885,
                 'value': 0.16419885,
                 'doubleSpentTxID': null
@@ -451,7 +451,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mnQ4ZaGessNgdxmWPxbTHcfx4b8R6eUr1X'
+                    'yTCZ7iv1U6p6MXp278FhMFZmKDbmgx89oX'
                   ]
                 },
                 'spentTxId': null,
@@ -467,7 +467,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mqdofsXHpePPGBFXuwwypAqCcXi48Xhb2f'
+                    'yWSJE2AeQspnykJ3d7cDsoj1sABQmZEHet'
                   ]
                 },
                 'spentTxId': '614fe1708825f9c21732394e4784cc6808ac1d8b939736bfdead970567561eec',
@@ -500,7 +500,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967294,
                 'n': 0,
-                'addr': 'mgZK8zpudWoAaAwpLQSgc9t9PJJyEBpBdJ',
+                'addr': 'yMMoh9UGDkEaHjzL3a6vfnmxdvnKshFtms',
                 'valueSat': 990000,
                 'value': 0.0099,
                 'doubleSpentTxID': null
@@ -514,7 +514,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967294,
                 'n': 1,
-                'addr': 'n4oM7bPuC4ZPdCEDvtw9xGYQC7jmi5S6F4',
+                'addr': 'yjbqfk3FnHzoLmGje4bQ1uSDSkD8KEYU2d',
                 'valueSat': 1960000,
                 'value': 0.0196,
                 'doubleSpentTxID': null
@@ -530,7 +530,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mtVD3tdifBNujYzZ5N7PgXfKk4Bc85tDKA'
+                    'yZHhc3H5FQpKT834nXmdkAZ8zgexjejyYq'
                   ]
                 },
                 'spentTxId': '9a213b879da9073a9a30606f9046f35f36f268cbf03f6242993a97c4c07c00b9',
@@ -547,7 +547,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mzZypShcs1B35udnkqeYeJy8rUdgHDDvKG'
+                    'yfNUNbLyTEcSoUgJU1Jnhwrx7772vS3Ued'
                   ]
                 },
                 'spentTxId': '418d3eb60275957b3456b96902e908abf962e71be4c4f09486564254664951bc',
@@ -650,19 +650,19 @@ describe('Transactions', function() {
                 script: '483045022100f4d169783bef70e3943d2a617cce55d9fe4e33fc6f9880b8277265e2f619a97002201238648abcdf52960500664e969046d41755f7fc371971ebc78002fc418465a6012103acdcd31d51272403ce0829447e59e2ac9e08ed0bf92011cbf7420addf24534e6',
                 scriptAsm: '3045022100f4d169783bef70e3943d2a617cce55d9fe4e33fc6f9880b8277265e2f619a97002201238648abcdf52960500664e969046d41755f7fc371971ebc78002fc418465a601 03acdcd31d51272403ce0829447e59e2ac9e08ed0bf92011cbf7420addf24534e6',
                 satoshis: 2796764565,
-                address: 'msyjRQQ88MabQmyafpKCjBHUwuJ49tVjcb'
+                address: 'yYnDyZ3Uib218M26NyySnpBJCXmQonauVa'
               }
             ],
             outputs: [
               {
                 satoshis: 2782729129,
-                address: 'mkPvAKZ2rar6qeG3KjBtJHHMSP1wFZH7Er',
+                address: 'yRCQiUCPSpHWZDJZ2tr8MvBAh1VHqhVd7w',
                 script: '76a9143583efb5e64a4668c6c54bb5fcc30af4417b4f2d88ac',
                 scriptAsm: 'OP_DUP OP_HASH160 3583efb5e64a4668c6c54bb5fcc30af4417b4f2d OP_EQUALVERIFY OP_CHECKSIG'
               },
               {
                 satoshis: 14000000,
-                address: 'muHmEsjhjmATf9i3T9gHyeQoce9LXe2dWz',
+                address: 'ya6Fo2P4KzbsNikZAKLY3HJcsGchEwcgi4',
                 script: '76a9149713201957f42379e574d7c70d506ee49c2c8ad688ac',
                 scriptAsm: 'OP_DUP OP_HASH160 9713201957f42379e574d7c70d506ee49c2c8ad6 OP_EQUALVERIFY OP_CHECKSIG'
               }
@@ -686,13 +686,13 @@ describe('Transactions', function() {
                 script: '47304402201ee69281db6b95bb1aa3074059b67581635b719e8f64e4c2694db6ec56ad9447022011e91528996ea459b1fb2c0b59363fecbefe4bc2ca90f7b2382bdaa358f2d5640121034cc057b12a68ee79df998004b9a1341bbb18b17ea4939bebaa3bac001e940f24',
                 scriptAsm: '304402201ee69281db6b95bb1aa3074059b67581635b719e8f64e4c2694db6ec56ad9447022011e91528996ea459b1fb2c0b59363fecbefe4bc2ca90f7b2382bdaa358f2d56401 034cc057b12a68ee79df998004b9a1341bbb18b17ea4939bebaa3bac001e940f24',
                 satoshis: 2782729129,
-                address: 'mkPvAKZ2rar6qeG3KjBtJHHMSP1wFZH7Er'
+                address: 'yRCQiUCPSpHWZDJZ2tr8MvBAh1VHqhVd7w'
               }
             ],
             outputs: [
               {
                 satoshis: 2764693692,
-                address: 'moSPsU4p2C2gssiniJ1JNH4fB9xs633tLv',
+                address: 'yUEtRciAcRU6bSmJRTfYRuxURnSDgsSxjD',
                 script: '76a91456e446bc3489543d8324c6d0271524c0bd0506dd88ac',
                 scriptAsm: 'OP_DUP OP_HASH160 56e446bc3489543d8324c6d0271524c0bd0506dd OP_EQUALVERIFY OP_CHECKSIG'
               },
@@ -700,7 +700,7 @@ describe('Transactions', function() {
                 satoshis: 18000000,
                 scriptAsm: 'OP_DUP OP_HASH160 011d2963b619186a318f768dddfd98cd553912a0 OP_EQUALVERIFY OP_CHECKSIG',
                 script: '76a914011d2963b619186a318f768dddfd98cd553912a088ac',
-                address: 'mfcquSAitCkUKXaYRZTRZQDfUegnL3kDew',
+                address: 'yLRLTap5USBt36d48j7fd37UjHA8xLhzTp',
                 spentTxId: '71a9e60c0341c9c258367f1a6d4253276f16e207bf84f41ff7412d8958a81bed'
               }
             ],
@@ -764,7 +764,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967294,
                 'n': 0,
-                'addr': 'msyjRQQ88MabQmyafpKCjBHUwuJ49tVjcb',
+                'addr': 'yYnDyZ3Uib218M26NyySnpBJCXmQonauVa',
                 'valueSat': 2796764565,
                 'value': 27.96764565,
                 'doubleSpentTxID': null
@@ -780,7 +780,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mkPvAKZ2rar6qeG3KjBtJHHMSP1wFZH7Er'
+                    'yRCQiUCPSpHWZDJZ2tr8MvBAh1VHqhVd7w'
                   ]
                 },
                 'spentTxId': '01f700df84c466f2a389440e5eeacdc47d04f380c39e5d19dce2ce91a11ecba3',
@@ -797,7 +797,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'muHmEsjhjmATf9i3T9gHyeQoce9LXe2dWz'
+                    'ya6Fo2P4KzbsNikZAKLY3HJcsGchEwcgi4'
                   ]
                 },
                 'spentTxId': null,
@@ -829,7 +829,7 @@ describe('Transactions', function() {
                 },
                 'sequence': 4294967294,
                 'n': 0,
-                'addr': 'mkPvAKZ2rar6qeG3KjBtJHHMSP1wFZH7Er',
+                'addr': 'yRCQiUCPSpHWZDJZ2tr8MvBAh1VHqhVd7w',
                 'valueSat': 2782729129,
                 'value': 27.82729129,
                 'doubleSpentTxID': null
@@ -845,7 +845,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'moSPsU4p2C2gssiniJ1JNH4fB9xs633tLv'
+                    'yUEtRciAcRU6bSmJRTfYRuxURnSDgsSxjD'
                   ]
                 },
                 'spentTxId': '661194e5533a395ce9076f292b7e0fb28fe94cd8832a81b4aa0517ff58c1ddd2',
@@ -862,7 +862,7 @@ describe('Transactions', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'mfcquSAitCkUKXaYRZTRZQDfUegnL3kDew'
+                    'yLRLTap5USBt36d48j7fd37UjHA8xLhzTp'
                   ]
                 },
                 'spentTxId': '71a9e60c0341c9c258367f1a6d4253276f16e207bf84f41ff7412d8958a81bed',
@@ -926,7 +926,7 @@ describe('Transactions', function() {
 
       var req = {
         query: {
-          address: 'mkPvAKZ2rar6qeG3KjBtJHHMSP1wFZH7Er'
+          address: 'yRCQiUCPSpHWZDJZ2tr8MvBAh1VHqhVd7w'
         }
       };
 
@@ -972,13 +972,14 @@ describe('Transactions', function() {
     it('should give the correct data', function() {
       var insight = {
         'txid': 'a15a7c257af596704390d345ff3ea2eed4cd02ce8bfb8afb700bff82257e49fb',
+        'txlock': false,
         'valueOut': 0.02038504,
         'vout': [
           {
-            '3DQYCLG6rZdtV2Xw8y4YtozZjNHYoKsLuo': 45000
+            '7e8B2XYGfYjXUo4tQaj4EBzDev7vcLvDct': 45000
           },
           {
-            '12WvZmssxT85f81dD6wcmWznxbnFkEpNMS': 1993504
+            'XcCmQ2XmvALfp4cD4zFqd3ganwMwkQqQJ5': 1993504
           }
         ],
         'isRBF': false
@@ -999,10 +1000,11 @@ describe('Transactions', function() {
     it('will not include null values in vout array', function() {
       var insight = {
         'txid': '716d54157c31e52c820494c6c2b8af1b64352049f4dcc80632aa15742a7f82c4',
+        'txlock': false,
         'valueOut': 12.5002,
         'vout': [
           {
-            'n4eY3qiP9pi32MWC6FcJFHciSsfNiYFYgR': 12.5002 * 1e8
+            'yjT2bzMjk49SjvYhoRGYJvWXhW8jN8Xn25': 12.5002 * 1e8
           }
         ],
         'isRBF': false
