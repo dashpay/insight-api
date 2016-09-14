@@ -254,8 +254,8 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api-dash/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api-dash/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /insight-api-dash/addrs/[:addrs]/txs[?from=&to=&group=]
+  /insight-api-dash/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20&group=1
 ```
 
 POST method:
@@ -268,6 +268,7 @@ POST params:
 addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 from (optional): 0
 to (optional): 20
+group (optional): 1 (will add a "byAddress" field, txs grouped by address)
 ```
 
 Sample output:
@@ -294,10 +295,51 @@ Sample output:
       { ... },
       ...
       { ... }
-    ]
+    ],
+  byAddress: {
+    2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5: 
+      [ { txid: '3e81723d069b12983b2ef694c9782d32fca26cc978de744acbc32c3d3496e915',
+         version: 1,
+         locktime: 0,
+         vin: [Object],
+         vout: [Object],
+         blockhash: '00000000011a135e5277f5493c52c66829792392632b8b65429cf07ad3c47a6c',
+         confirmations: 109367,
+         time: 1393659685,
+         blocktime: 1393659685,
+         valueOut: 0.3453,
+         size: 225,
+         firstSeenTs: undefined,
+         valueIn: 0.3454,
+         fees: 0.0001 },
+        { ... },
+        { ... },
+        ...
+        { ... }
+      ],
+    2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f:
+      [ { txid: '3e81723d069b12983b2ef694c9782d32fca26cc978de744acbc32c3d3496e915',
+         version: 1,
+         locktime: 0,
+         vin: [Object],
+         vout: [Object],
+         blockhash: '00000000011a135e5277f5493c52c66829792392632b8b65429cf07ad3c47a6c',
+         confirmations: 109367,
+         time: 1393659685,
+         blocktime: 1393659685,
+         valueOut: 0.3453,
+         size: 225,
+         firstSeenTs: undefined,
+         valueIn: 0.3454,
+         fees: 0.0001 },
+        { ... },
+        { ... },
+        ...
+        { ... }
+      ]
+    }
  }
 ```
-
 Note: if pagination params are not specified, the result is an array of transactions.
 
 ### Transaction Ids by Addresses
