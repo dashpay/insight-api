@@ -28,12 +28,18 @@ describe('Status', function() {
       total_amount: 750000000000
     };
 
+    var MNdetails = {
+      '3e739c0219595365c28cb8e14606f18d183500ee13bbedfee8c755a502cbc70a-1': 'NEW_START_REQUIRED 70206 yXXQNnSDhijos1Ucq9NiJMEcFRF6nZGjKq 1486207842   170674          0      0 88.99.15.34:19999',
+      'a9dec34daa02d7537d47cefdb2c5131585f97eb8b90c1ccf63675ed3129ca704-1': 'NEW_START_REQUIRED 70206 yaffS5bPkfZ211SXbvNyQxFRRP5tL2dZtN 1486196162        0          0      0 176.31.145.17:19999',
+      '88f33da9565bfa2e793402900a894d55ad96039c82ca0ef6919d33141761c4c9-0': 'NEW_START_REQUIRED 70206 yTJSNXHqp1uxSTVQDm1abPUsQJKgvcUqsb 1487206254   302622          0      0 5.45.104.74:19999',
+    }
     var node = {
       services: {
         bitcoind: {
           getInfo: sinon.stub().callsArgWith(0, null, info),
           getBestBlockHash: sinon.stub().callsArgWith(0, null, outSetInfo.bestblock),
-          tiphash: outSetInfo.bestblock
+          tiphash: outSetInfo.bestblock,
+          getMNlist: sinon.stub().callsArgWith(0, null, MNdetails)
         }
       }
     };
@@ -60,6 +66,29 @@ describe('Status', function() {
 
       status.show(req, res);
     });
+
+    it('getMNlist', function(done) {
+      var req = {
+        query: {q: 'getMNlist'}
+      };
+      var res = {
+        jsonp: function(data) {
+          should.exist(data[0].vin);
+          should.exist(data[0].status);
+          data[0].status.should.not.be.eql('');
+          should.exist(data[0].protocol);
+          should.exist(data[0].payee);
+          should.exist(data[0].lastseen);
+          should.exist(data[0].activeseconds);
+          should.exist(data[0].lastpaidtime);
+          should.exist(data[0].lastpaidblock);
+          should.exist(data[0].IP);
+          done();
+        }
+      };
+      status.show(req, res);
+    });
+
 
     it('getDifficulty', function(done) {
       var req = {
@@ -188,3 +217,4 @@ describe('Status', function() {
     });
   });
 });
+
