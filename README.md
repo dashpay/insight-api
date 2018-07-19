@@ -677,6 +677,39 @@ Where "xxx" can be:
 ```
   /insight-api-dash/utils/estimatefee[?nbBlocks=2]
 ```
+### Search Method
+
+Returns a prioritized array for searching entities (Address, Transaction, Block)
+```
+  /insight-api-dash/search/[:searchstr]
+  /insight-api-dash/search/79872
+```
+
+Sample valid output:
+```
+[
+    {
+        "factory": "BlockByHeight",
+        "object": "blockHeight",
+        "path": "block/"
+    },
+    {
+        "factory": "Transaction",
+        "object": "txId",
+        "path": "tx/"
+    },
+    {
+        "factory": "Address",
+        "object": "addrStr",
+        "path": "address/"
+    },
+    {
+        "factory": "Block",
+        "object": "blockHash",
+        "path": "block/"
+    }
+]
+```
 
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).
