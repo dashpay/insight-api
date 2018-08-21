@@ -319,7 +319,8 @@ describe('Blocks', function() {
       }
     };
     var blocks = new BlockController({node: node});
-
+    
+    var res = {};
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
@@ -327,7 +328,7 @@ describe('Blocks', function() {
       done();
     };
 
-    blocks.getBlockReward('0000000000108d4b9231f4ec99ab5dc970b6ec740745f44eee0754f67d598ac3', cb); // should return reward for block 100000
+    blocks.getBlockReward('0000000000108d4b9231f4ec99ab5dc970b6ec740745f44eee0754f67d598ac3', res, cb); // should return reward for block 100000
   });
 
   it('reward for block 300000 should be correct', function(done) {
@@ -346,7 +347,8 @@ describe('Blocks', function() {
       }
     };
     var blocks = new BlockController({node: node});
-
+    
+    var res = {};
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
@@ -354,7 +356,7 @@ describe('Blocks', function() {
       done();
     };
 
-    blocks.getBlockReward('000000000008b8c4e86d070a78c978957ae7f0f127ff91aae6e4b0964c92d0b5', cb); // should return reward for block 300000
+    blocks.getBlockReward('000000000008b8c4e86d070a78c978957ae7f0f127ff91aae6e4b0964c92d0b5', res, cb); // should return reward for block 300000
   });
 
   it('reward for block 600000 should be correct', function(done) {
@@ -373,7 +375,8 @@ describe('Blocks', function() {
       }
     };
     var blocks = new BlockController({node: node});
-
+    
+    var res = {};
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
@@ -381,7 +384,7 @@ describe('Blocks', function() {
       done();
     };
 
-    blocks.getBlockReward('000000000000c53bf17a98b9ee042d6d4c3faf37d7a9f5c1335cce6df896f2f4', cb); // should return difficulty of block 100000
+    blocks.getBlockReward('000000000000c53bf17a98b9ee042d6d4c3faf37d7a9f5c1335cce6df896f2f4', res, cb); // should return difficulty of block 100000
   });
 });
 
