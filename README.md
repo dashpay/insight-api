@@ -109,8 +109,8 @@ This will start the Insight-API listening on default port 3001.
 ### Block
 
 ```
-  /insight-api-dash/block/[:hash]
-  /insight-api-dash/block/0000000006e7b38e8ab2d351239019c01de9a148b5baef58cfe52dfd9917cedc
+  /insight-api/block/[:hash]
+  /insight-api/block/0000000006e7b38e8ab2d351239019c01de9a148b5baef58cfe52dfd9917cedc
 ```
 
 ### Block Index
@@ -118,8 +118,8 @@ This will start the Insight-API listening on default port 3001.
 Get block hash by height
 
 ```
-  /insight-api-dash/block-index/[:height]
-  /insight-api-dash/block-index/0
+  /insight-api/block-index/[:height]
+  /insight-api/block-index/0
 ```
 
 This would return:
@@ -135,7 +135,7 @@ which is the hash of the TestNet Genesis block (0 height)
 ### Raw Block
 
 ```
-  /insight-api-dash/rawblock/[:blockHash]
+  /insight-api/rawblock/[:blockHash]
 ```
 
 This would return:
@@ -151,7 +151,7 @@ This would return:
 Get block summaries by date:
 
 ```
-  /insight-api-dash/blocks?limit=3&blockDate=2017-04-22
+  /insight-api/blocks?limit=3&blockDate=2017-04-22
 ```
 
 Example response:
@@ -187,27 +187,27 @@ Example response:
 ### Transaction
 
 ```
-  /insight-api-dash/tx/[:txid]
-  /insight-api-dash/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
-  /insight-api-dash/rawtx/[:rawid]
-  /insight-api-dash/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+  /insight-api/tx/[:txid]
+  /insight-api/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+  /insight-api/rawtx/[:rawid]
+  /insight-api/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
 ```
 
 ### Address
 
 ```
-  /insight-api-dash/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api-dash/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
-  /insight-api-dash/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
+  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
+  /insight-api/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
+  /insight-api/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
 ```
 
 ### Address Properties
 
 ```
-  /insight-api-dash/addr/[:addr]/balance
-  /insight-api-dash/addr/[:addr]/totalReceived
-  /insight-api-dash/addr/[:addr]/totalSent
-  /insight-api-dash/addr/[:addr]/unconfirmedBalance
+  /insight-api/addr/[:addr]/balance
+  /insight-api/addr/[:addr]/totalReceived
+  /insight-api/addr/[:addr]/totalSent
+  /insight-api/addr/[:addr]/unconfirmedBalance
 ```
 
 The response contains the value in Satoshis.
@@ -215,7 +215,7 @@ The response contains the value in Satoshis.
 ### Unspent Outputs
 
 ```
-  /insight-api-dash/addr/[:addr]/utxo
+  /insight-api/addr/[:addr]/utxo
 ```
 
 Sample return:
@@ -240,14 +240,14 @@ Sample return:
 GET method:
 
 ```
-  /insight-api-dash/addrs/[:addrs]/utxo
-  /insight-api-dash/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/utxo
+  /insight-api/addrs/[:addrs]/utxo
+  /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/utxo
 ```
 
 POST method:
 
 ```
-  /insight-api-dash/addrs/utxo
+  /insight-api/addrs/utxo
 ```
 
 POST params:
@@ -285,15 +285,15 @@ Sample output:
 ### Transactions by Block
 
 ```
-  /insight-api-dash/txs/?block=HASH
-  /insight-api-dash/txs/?block=000000000814dd7cf470bd835334ea6624ebf0291ea857a5ab37c65592726375
+  /insight-api/txs/?block=HASH
+  /insight-api/txs/?block=000000000814dd7cf470bd835334ea6624ebf0291ea857a5ab37c65592726375
 ```
 
 ### Transactions by Address
 
 ```
-  /insight-api-dash/txs/?address=ADDR
-  /insight-api-dash/txs/?address=yWFfdp9nLUjy1kJczFhRuBMUjtTkTTiyMv
+  /insight-api/txs/?address=ADDR
+  /insight-api/txs/?address=yWFfdp9nLUjy1kJczFhRuBMUjtTkTTiyMv
 ```
 
 ### Transactions for Multiple Addresses
@@ -301,14 +301,14 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api-dash/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/txs?from=0&to=20
+  /insight-api/addrs/[:addrs]/txs[?from=&to=]
+  /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/txs?from=0&to=20
 ```
 
 POST method:
 
 ```
-  /insight-api-dash/addrs/txs
+  /insight-api/addrs/txs
 ```
 
 POST params:
@@ -361,7 +361,7 @@ Note: if pagination params are not specified, the result is an array of transact
 POST method:
 
 ```
-  /insight-api-dash/tx/send
+  /insight-api/tx/send
 ```
 
 POST params:
@@ -398,7 +398,7 @@ Conditions :
 POST method:
 
 ```
-  /insight-api-dash/tx/sendix
+  /insight-api/tx/sendix
 ```
 
 POST params:
@@ -420,7 +420,7 @@ POST response:
 GET method:
 
 ```
-  /insight-api-dash/sporks
+  /insight-api/sporks
 ```
 
 Sample output:
@@ -446,7 +446,7 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/info
+  /insight-api/gobject/info
 ```
 
 Sample output:
@@ -472,7 +472,7 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/count
+  /insight-api/gobject/count
 ```
 
 Sample output:
@@ -490,7 +490,7 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/list/proposal (or /insight-api-dash/gobject/list)
+  /insight-api/gobject/list/proposal (or /insight-api/gobject/list)
 ```
 
 Sample output:
@@ -521,7 +521,7 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/list/trigger
+  /insight-api/gobject/list/trigger
 ```
 
 Sample output:
@@ -544,8 +544,8 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/get/[:hash]
-  /insight-api-dash/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
+  /insight-api/gobject/get/[:hash]
+  /insight-api/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
 ```
 
 Sample output:
@@ -595,8 +595,8 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/check/[:hexData]
-  /insight-api-dash/gobject/check/5b5b2270726f706f736[..]
+  /insight-api/gobject/check/[:hexData]
+  /insight-api/gobject/check/5b5b2270726f706f736[..]
 ```
 
 Sample output:
@@ -610,8 +610,8 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/deserialize/[:hexData]
-  /insight-api-dash/gobject/deserialize/5b5b2270726f706f736[..]
+  /insight-api/gobject/deserialize/[:hexData]
+  /insight-api/gobject/deserialize/5b5b2270726f706f736[..]
 ```
 
 Sample output:
@@ -629,8 +629,8 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/gobject/votes/current/[:hash]
-  /insight-api-dash/gobject/votes/current/fbda8cdc1f48917f53b7d63fbce81c85d6dedd3d0e476e979926dfd154b84034
+  /insight-api/gobject/votes/current/[:hash]
+  /insight-api/gobject/votes/current/fbda8cdc1f48917f53b7d63fbce81c85d6dedd3d0e476e979926dfd154b84034
 ```
 
 Sample output:
@@ -648,8 +648,8 @@ Sample output:
 GET method:
 
 ```
-  /insight-api-dash/governance/budget/[:blockIndex]
-  /insight-api-dash/governance/budget/79872
+  /insight-api/governance/budget/[:blockIndex]
+  /insight-api/governance/budget/79872
 ```
 
 Sample output:
@@ -667,7 +667,7 @@ Sample output:
 POST method:
 
 ```
-  /insight-api-dash/gobject/submit
+  /insight-api/gobject/submit
 ```
 
 Example input:
@@ -695,14 +695,14 @@ Sample output:
 ### Masternodes List
 
 ```
-  /insight-api-dash/masternodes/list
+  /insight-api/masternodes/list
 ```
 
 ### Validate Masternode
 
 ```
-  /insight-api-dash/masternodes/validate/[:payee]
-  /insight-api-dash/masternodes/validate/yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo
+  /insight-api/masternodes/validate/[:payee]
+  /insight-api/masternodes/validate/yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo
 ```
 
 Sample valid output:
@@ -724,19 +724,19 @@ Sample valid output:
 ### Historic Blockchain Data Sync Status
 
 ```
-  /insight-api-dash/sync
+  /insight-api/sync
 ```
 
 ### Live Network P2P Data Sync Status
 
 ```
-  /insight-api-dash/peer
+  /insight-api/peer
 ```
 
 ### Status of the Bitcoin Network
 
 ```
-  /insight-api-dash/status?q=xxx
+  /insight-api/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -749,7 +749,7 @@ Where "xxx" can be:
 ### Utility Methods
 
 ```
-  /insight-api-dash/utils/estimatefee[?nbBlocks=2]
+  /insight-api/utils/estimatefee[?nbBlocks=2]
 ```
 
 ## Web Socket API
