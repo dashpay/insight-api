@@ -170,7 +170,7 @@ describe('RateLimiter', function() {
   });
 
   describe('#addClient', function() {
-    var sandbox = sinon.sandbox.create();
+    var sandbox = sinon.createSandbox();
     afterEach(function() {
       sandbox.restore();
     });
