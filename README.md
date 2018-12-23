@@ -52,12 +52,12 @@ This is a backend-only service. If you're looking for the web frontend applicati
 
 ## Install
 
-```bash
+```bashl
 npm install -g @dashevo/dashcore-node
-dashcore-node create mynode
+bitcore-node-dash create mynode
 cd mynode
 dashcore-node install @dashevo/insight-api
-dashcore-node start  # to also start the service
+dashcore-node start
 ```
 
 The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
