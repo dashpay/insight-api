@@ -53,10 +53,10 @@ This is a backend-only service. If you're looking for the web frontend applicati
 ## Install
 
 ```bash
-npm install -g dashcore-node@latest
+npm install -g @dashevo/dashcore-node
 dashcore-node create mynode
 cd mynode
-dashcore-node install insight-api
+dashcore-node install @dashevo/insight-api
 dashcore-node start  # to also start the service
 ```
 
