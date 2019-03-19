@@ -212,8 +212,8 @@ describe('Addresses', function() {
         'totalSentSat': 2782729129,
         'unconfirmedBalance': 0,
         'unconfirmedBalanceSat': 0,
-        'unconfirmedTxApperances': 0,
-        'txApperances': 2,
+        'unconfirmedAppearances': 0,
+        'txAppearances': 2,
         'transactions': [
           'bb0ec3b96209fac9529570ea6f83a86af2cceedde4aaf2bfcc4796680d23f1c7',
           '01f700df84c466f2a389440e5eeacdc47d04f380c39e5d19dce2ce91a11ecba3'
