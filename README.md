@@ -199,6 +199,10 @@ Example response:
   /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
   /insight-api/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
   /insight-api/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
+  
+  /insight-api/addrs/[:addrs][?noTxList=1][&from=&to=]
+  /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx
+  /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx?from=1000&to=2000
 ```
 
 ### Address Properties
@@ -208,6 +212,11 @@ Example response:
   /insight-api/addr/[:addr]/totalReceived
   /insight-api/addr/[:addr]/totalSent
   /insight-api/addr/[:addr]/unconfirmedBalance
+  
+  /insight-api/addrs/[:addrs]/balance
+  /insight-api/addrs/[:addrs]/totalReceived
+  /insight-api/addrs/[:addrs]/totalSent
+  /insight-api/addrs/[:addrs]/unconfirmedBalance
 ```
 
 The response contains the value in Satoshis.
