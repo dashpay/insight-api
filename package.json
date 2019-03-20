@@ -61,7 +61,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "async": "^2.6.1",
-    "@dashevo/dashcore-lib": "^0.16.8",
+    "@dashevo/dashcore-lib": "^0.17.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "lodash": "^4.17.11",
