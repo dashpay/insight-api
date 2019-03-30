@@ -3,6 +3,7 @@
   "port": 3001,
   "services": [
     "dashd",
+    "web",
     "@dashevo/insight-api"
   ],
   "servicesConfig": {
