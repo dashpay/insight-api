@@ -1,7 +1,7 @@
 {
   "name": "@dashevo/insight-api",
   "description": "A Dash blockchain REST and WebSocket API Service",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "repository": "git://github.com/dashevo/insight-api.git",
   "contributors": [
     {
@@ -61,7 +61,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "async": "^2.6.1",
-    "@dashevo/dashcore-lib": "^0.17.0",
+    "@dashevo/dashcore-lib": "^0.17.2",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "lodash": "^4.17.11",
