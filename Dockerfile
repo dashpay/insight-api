@@ -13,6 +13,9 @@ WORKDIR /insight
 # Copy dashcore-node
 RUN git clone --branch master --single-branch --depth 1 https://github.com/dashevo/dashcore-node.git /insight
 
+# Copy config file
+COPY ./dashcore-node.json /insight/dashcore-node.json
+
 ARG VERSION
 
 # Install npm packages
