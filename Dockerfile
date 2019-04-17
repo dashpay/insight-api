@@ -13,9 +13,6 @@ WORKDIR /insight
 # Copy dashcore-node
 RUN git clone --branch master --single-branch --depth 1 https://github.com/dashevo/dashcore-node.git /insight
 
-# Copy config file
-COPY ./dashcore-node.json /insight/dashcore-node.json
-
 ARG VERSION
 
 # Install npm packages
@@ -29,7 +26,10 @@ FROM node:8-alpine
 LABEL maintainer="Dash Developers <dev@dash.org>"
 LABEL description="Dockerised Insight API"
 
+# Copy project files
 COPY --from=0 /insight/ /insight
+
+WORKDIR /insight
 
 EXPOSE 3001
 
