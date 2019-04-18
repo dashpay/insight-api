@@ -36,4 +36,4 @@ COPY --from=0 /insight/ .
 
 EXPOSE 3001
 
-CMD ["/insight/bin/dashcore-node", "start"]
+CMD ["bin/dashcore-node", "start"]
