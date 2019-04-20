@@ -32,7 +32,7 @@ IMAGE_NAME="dashpay/insight-api"
 docker build -t "${IMAGE_NAME}:latest" \
              -t "${IMAGE_NAME}:${VERSION}" \
              --build-arg "VERSION=${VERSION}" \
-             .
+             docker
 
 # Login to Docker Hub
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
