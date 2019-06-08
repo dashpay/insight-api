@@ -72,7 +72,8 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 To protect the server, insight-api has a built-in query rate limiter. It can be configurable in `dashcore-node.json` with:
 
-```json
+```json /*eslint-disable */
+
 "servicesConfig": {
   "insight-api": {
     "rateLimiterOptions": {
@@ -86,7 +87,7 @@ With all the configuration options available: https://github.com/dashevo/insight
 
 Or disabled entirely with:
 
-```json
+```json /*eslint-disable */
 "servicesConfig": {
   "insight-api": {
     "disableRateLimiter": true
@@ -704,30 +705,13 @@ Sample output:
 ### Masternodes List
 
 ```
-  /insight-api/masternodes/list
+  deprecated until full support for v0.13 deterministic masternode list
 ```
 
 ### Validate Masternode
 
 ```
-  /insight-api/masternodes/validate/[:payee]
-  /insight-api/masternodes/validate/yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo
-```
-
-Sample valid output:
-
-```
-{
-  "valid":true,
-  "vin":"e3a6b7878a7e9413898bb379b323c521676f9d460db17ec3bf42d9ac0c9a432f-1",
-  "status":"ENABLED",
-  "rank":1,
-  "ip":"217.182.229.146:19999",
-  "protocol":70208,
-  "payee":"yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo",
-  "activeseconds":158149,
-  "lastseen":1507810068
-}
+  deprecated until full support for v0.13 deterministic masternode list
 ```
 
 ### Historic Blockchain Data Sync Status
