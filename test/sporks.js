@@ -33,7 +33,6 @@ describe('Spork', function () {
 			var req = {};
 			var res = {
 				jsonp: function (data) {
-					console.log(data);
 					should.exist(data.sporks);
 					should.exist(data.sporks.SPORK_2_INSTANTSEND_ENABLED);
 					should.exist(data.sporks.SPORK_3_INSTANTSEND_BLOCK_FILTERING);

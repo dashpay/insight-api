@@ -202,10 +202,55 @@ describe('Transactions', function() {
 
       transactions.transaction(req, res, next);
     });
+
+    it('should return 400 if txid not found', function(done) {
+      class HTTPMockResponse {
+        status(httpStatusCode) {
+          this.statusCode = httpStatusCode;
+          return this;
+        }
+        send(msg) {
+          return;
+        }
+        jsonp(data) {
+          return;
+        }
+      }
+      let res = new HTTPMockResponse();
+
+      let node = {
+        getDetailedTransaction: function(txid, callback) {
+          const err = {
+            message: 'Transaction Not Found',
+            code: -7,
+          };
+          return callback(err, null);
+        },
+        services: {
+          dashd: {
+            height: 534203
+          },
+        },
+        network: 'testnet'
+      };
+
+      var transactions = new TxController(node);
+      var txid = '0000000000000000000000000000000000000000000000000000000000000001';
+      var req = {
+        params: { txid }
+      };
+
+      const next = function() {
+        return;
+      }
+      transactions.transaction(req, res, next);
+      should(res.statusCode).eql(400);
+      done();
+    })
   });
 
   describe('/txs', function() {
-    var sandbox = sinon.sandbox.create();
+    var sandbox = sinon.createSandbox();
     afterEach(function() {
       sandbox.restore();
     });
