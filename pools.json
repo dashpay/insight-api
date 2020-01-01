@@ -106,6 +106,13 @@
     ]
   },
   {
+    "poolName":"Unknown MiningCore Pool",
+    "url":"https://github.com/coinfoundry/miningcore",
+    "searchStrings":[
+      "/MiningCore/"
+    ]
+  },
+  {
     "poolName":"Unknown Node Stratum Pool",
     "url":"https://github.com/zone117x/node-stratum-pool",
     "searchStrings":[
