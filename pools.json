@@ -72,6 +72,13 @@
     ]
   },
   {
+    "poolName":"CybtcPool",
+    "url":"https://cybtc.info/",
+    "searchStrings":[
+      "/CybtcPool/"
+    ]
+  },
+  {
     "poolName": "Discus Fish",
     "url": "http://f2pool.com/",
     "searchStrings": [
@@ -108,6 +115,13 @@
       "Josh Zerlan was here!",
       "EclipseMC",
       "Aluminum Falcon"
+    ]
+  },
+  {
+    "poolName":"Genesis Mining",
+    "url":"https://www.genesis-mining.com/",
+    "searchStrings":[
+      "/NaN"
     ]
   },
   {
@@ -187,6 +201,20 @@
     "url": "https://polmine.pl",
     "searchStrings": [
       "by polmine.pl"
+    ]
+  },
+  {
+    "poolName":"Poolin",
+    "url":"https://www.poolin.com/",
+    "searchStrings":[
+      "/poolin.com/"
+    ]
+  },
+  {
+    "poolName":"Prohashing",
+    "url":"https://prohashing.com/",
+    "searchStrings":[
+      "prohashing.com"
     ]
   },
   {
