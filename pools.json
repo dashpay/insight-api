@@ -310,14 +310,14 @@
     ]
   },
   {
-    "poolName":"Node Stratum Pool",
+    "poolName":"Unknown Node Stratum Pool",
     "url":"https://github.com/zone117x/node-stratum-pool",
     "searchStrings":[
       "/nodeStratum/"
     ]
   },
   {
-    "poolName":"Stratum Pool",
+    "poolName":"Unknown Stratum Pool",
     "url":"https://github.com/dashpay/dash-stratum",
     "searchStrings":[
       "/stratum/"
