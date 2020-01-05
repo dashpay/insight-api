@@ -114,7 +114,7 @@ describe('Blocks', function() {
       'reward': '3.88010204',
       'isMainChain': true,
       'poolInfo': { 
-        'poolName': 'Node Stratum Pool',
+        'poolName': 'Unknown Node Stratum Pool',
         'url': 'https://github.com/zone117x/node-stratum-pool'
       }
     };
@@ -197,8 +197,8 @@ describe('Blocks', function() {
           'time': 1440978683,
           'txlength': 1,
           'poolInfo': {
-            'poolName': 'AntMiner',
-            'url': 'https://bitmaintech.com/'
+            'poolName': 'AntPool',
+            'url': 'https://antpool.com/'
           }
         },
         {
@@ -208,8 +208,8 @@ describe('Blocks', function() {
           'time': 1440977479,
           'txlength': 1,
           'poolInfo': {
-            'poolName': 'AntMiner',
-            'url': 'https://bitmaintech.com/'
+            'poolName': 'AntPool',
+            'url': 'https://antpool.com/'
           }
         }
       ],
