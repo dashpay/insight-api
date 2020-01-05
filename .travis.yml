@@ -1,11 +1,10 @@
-sudo: false
-dist: trusty
+dist: bionic
 language: node_js
 
+# Support Active LTS versions of Node.js
 node_js:
-  - '6'
-  - '8'
   - '10'
+  - '12'
 
 services:
   - docker
