@@ -6,13 +6,14 @@ node_js:
   - '10'
   - '12'
 
-services:
-  - docker
-
 addons:
   apt:
-    packages:
-      - docker-ce
+    update: true
+    sources:
+      - sourceline: 'deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable'
+
+env:
+  - DOCKER_CLI_EXPERIMENTAL=enabled
 
 branches:
   only:
@@ -21,12 +22,15 @@ branches:
     - /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
 
 before_install:
+  - sudo apt-get -y install docker-ce
   # Login to NPM registry
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
   # Use latest supported NPM in order to speedup build and support `npm ci`
   - npm i -g npm@6
 
 install:
+  - docker run --rm --privileged docker/binfmt:a7996909642ee92942dcd6cff44b9b95f08dad64
+  - docker buildx create --name xbuilder --use
   - npm ci
 
 deploy:

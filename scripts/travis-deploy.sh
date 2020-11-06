@@ -29,9 +29,10 @@ npm publish
 IMAGE_NAME="dashpay/insight-api"
 
 # Build Docker image
-docker build -t "${IMAGE_NAME}:latest" \
+docker buildx build -t "${IMAGE_NAME}:latest" \
              -t "${IMAGE_NAME}:${VERSION}" \
              --build-arg "VERSION=${VERSION}" \
+             --platform linux/amd64,linux/arm64,linux/arm/v7 \
              docker
 
 # Login to Docker Hub
