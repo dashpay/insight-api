@@ -41,7 +41,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
     - [Masternodes List](#masternodes-list)
     - [Historic Blockchain Data Sync Status](#historic-blockchain-data-sync-status)
     - [Live Network P2P Data Sync Status](#live-network-p2p-data-sync-status)
-    - [Status of the Bitcoin Network](#status-of-the-bitcoin-network)
+    - [Status of the Dash Network](#status-of-the-dash-network)
     - [Utility Methods](#utility-methods)
 - [Web Socket Api](#web-socket-api)
     - [Example Usage](#example-usage)
@@ -200,7 +200,7 @@ Example response:
   /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
   /insight-api/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
   /insight-api/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
-  
+
   /insight-api/addrs/[:addrs][?noTxList=1][&from=&to=]
   /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx
   /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx?from=1000&to=2000
@@ -213,7 +213,7 @@ Example response:
   /insight-api/addr/[:addr]/totalReceived
   /insight-api/addr/[:addr]/totalSent
   /insight-api/addr/[:addr]/unconfirmedBalance
-  
+
   /insight-api/addrs/[:addrs]/balance
   /insight-api/addrs/[:addrs]/totalReceived
   /insight-api/addrs/[:addrs]/totalSent
@@ -521,7 +521,7 @@ Sample output:
     AbsoluteYesCount: 40,
     YesCount: 40,
     NoCount: 0,
-    AbstainCount: 0 
+    AbstainCount: 0
   }
 ]
 ```
@@ -726,7 +726,7 @@ Sample output:
   /insight-api/peer
 ```
 
-### Status of the Bitcoin Network
+### Status of the Dash Network
 
 ```
   /insight-api/status?q=xxx
@@ -737,6 +737,7 @@ Where "xxx" can be:
  * getInfo
  * getDifficulty
  * getBestBlockHash
+ * getBestChainLock
  * getLastBlockHash
 
 ### Utility Methods
@@ -786,7 +787,7 @@ Sample output:
 }
 ```
 
-`<bitcoinAddress>`: new transaction concerning <bitcoinAddress> received from network. This event is published in the `<bitcoinAddress>` room.
+`<dashAddress>`: new transaction concerning <dashAddress> received from network. This event is published in the `<dashAddress>` room.
 
 `status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
 

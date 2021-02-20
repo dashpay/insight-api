@@ -8,7 +8,7 @@ describe('Status', function() {
   describe('/status', function() {
     var info = {
       version: 110000,
-      insightVersion:"0.5.0", 
+      insightVersion:"0.5.0",
       protocolVersion: 70002,
       blocks: 548645,
       timeOffset: 0,
@@ -26,7 +26,12 @@ describe('Status', function() {
       txouts: 151,
       bytes_serialized: 10431,
       hash_serialized: 'c165d5dcb22a897745ee2ee274b47133b995bbcf8dd4a7572fedad87541c7df8',
-      total_amount: 750000000000
+      total_amount: 750000000000,
+      bestchainlock: {
+        blockhash: '20b6cc0600037171b8bb634bbd04ea754945be44db8d9199b74798f1abdb382d',
+        height: 151,
+        known_block: true
+      }
     };
 
     var node = {
@@ -34,6 +39,7 @@ describe('Status', function() {
         dashd: {
           getInfo: sinon.stub().callsArgWith(0, null, info),
           getBestBlockHash: sinon.stub().callsArgWith(0, null, outSetInfo.bestblock),
+          getBestChainLock: sinon.stub().callsArgWith(0, null, outSetInfo.bestchainlock),
           tiphash: outSetInfo.bestblock
         }
       }
@@ -88,6 +94,21 @@ describe('Status', function() {
       var res = {
         jsonp: function(data) {
           data.bestblockhash.should.equal(outSetInfo.bestblock);
+          done();
+        }
+      };
+      status.show(req, res);
+    });
+
+    it('getBestChainLock', function (done) {
+      var req = {
+        query: {
+          q: 'getBestChainLock'
+        }
+      };
+      var res = {
+        jsonp: function (data) {
+          data.bestchainlock.should.equal(outSetInfo.bestchainlock);
           done();
         }
       };
