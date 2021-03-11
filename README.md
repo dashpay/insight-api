@@ -190,6 +190,7 @@ Example response:
 ```
   /insight-api/tx/[:txid]
   /insight-api/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+
   /insight-api/rawtx/[:rawid]
   /insight-api/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
 ```
