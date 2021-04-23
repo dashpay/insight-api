@@ -1,6 +1,6 @@
 # Insight-API
 
-[![Build Status](https://img.shields.io/travis/dashevo/insight-api/master.svg?branch=master)](https://travis-ci.org/dashevo/insight-api)
+[![Build Status](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml)
 [![NPM version](https://img.shields.io/npm/v/@dashevo/insight-api.svg)](https://npmjs.org/package/@dashevo/insight-api)
 [![API stability](https://img.shields.io/badge/stability-stable-green.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 
