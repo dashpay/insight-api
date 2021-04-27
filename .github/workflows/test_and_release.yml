@@ -79,7 +79,7 @@ jobs:
   release-docker:
     name: Release Docker image
     runs-on: ubuntu-20.04
-    needs: test
+    needs: release-npm
     if: ${{ github.event_name == 'release' }}
     steps:
       - uses: actions/checkout@v2
