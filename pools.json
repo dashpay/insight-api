@@ -140,6 +140,13 @@
     ]
   },
   {
+    "poolName": "Luxor",
+    "url": "https://mining.luxor.tech/",
+    "searchStrings": [
+      "LUXOR"
+    ]
+  },  
+  {
     "poolName": "Megabigpower",
     "url": "http://megabigpower.com/",
     "searchStrings": [
