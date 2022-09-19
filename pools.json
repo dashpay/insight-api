@@ -95,6 +95,13 @@
     ]
   },
   {
+    "poolName": "CybtcPool",
+    "url": "https://cybtc.info/",
+    "searchStrings": [
+      "/CybtcPool/"
+    ]
+  },
+  {
     "poolName": "Eligius",
     "url": "http://eligius.st/",
     "searchStrings": [
@@ -140,6 +147,13 @@
     ]
   },
   {
+    "poolName": "Luxor",
+    "url": "https://mining.luxor.tech/",
+    "searchStrings": [
+      "LUXOR"
+    ]
+  },
+  {
     "poolName": "Megabigpower",
     "url": "http://megabigpower.com/",
     "searchStrings": [
@@ -180,6 +194,13 @@
     "searchStrings": [
       "ozco.in",
       "ozcoin"
+    ]
+  },
+  {
+    "poolName": "Poolin",
+    "url": "https://poolin.com/",
+    "searchStrings": [
+      "/poolin.com/"
     ]
   },
   {

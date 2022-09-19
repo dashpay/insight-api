@@ -1,10 +1,10 @@
 # Insight-API
 
-[![Build Status](https://img.shields.io/travis/dashevo/insight-api/master.svg?branch=master)](https://travis-ci.org/dashevo/insight-api)
+[![Build Status](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/dashevo/insight-api/actions/workflows/test_and_release.yml)
 [![NPM version](https://img.shields.io/npm/v/@dashevo/insight-api.svg)](https://npmjs.org/package/@dashevo/insight-api)
 [![API stability](https://img.shields.io/badge/stability-stable-green.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 
-> A Dash blockchain REST and WebSocket API Service
+A Dash blockchain REST and WebSocket API Service
 
 This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/dashevo/insight-ui.
 
@@ -41,7 +41,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
     - [Masternodes List](#masternodes-list)
     - [Historic Blockchain Data Sync Status](#historic-blockchain-data-sync-status)
     - [Live Network P2P Data Sync Status](#live-network-p2p-data-sync-status)
-    - [Status of the Bitcoin Network](#status-of-the-bitcoin-network)
+    - [Status of the Dash Network](#status-of-the-dash-network)
     - [Utility Methods](#utility-methods)
 - [Web Socket Api](#web-socket-api)
     - [Example Usage](#example-usage)
@@ -190,6 +190,7 @@ Example response:
 ```
   /insight-api/tx/[:txid]
   /insight-api/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+
   /insight-api/rawtx/[:rawid]
   /insight-api/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
 ```
@@ -200,7 +201,7 @@ Example response:
   /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
   /insight-api/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
   /insight-api/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
-  
+
   /insight-api/addrs/[:addrs][?noTxList=1][&from=&to=]
   /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx
   /insight-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx?from=1000&to=2000
@@ -213,7 +214,7 @@ Example response:
   /insight-api/addr/[:addr]/totalReceived
   /insight-api/addr/[:addr]/totalSent
   /insight-api/addr/[:addr]/unconfirmedBalance
-  
+
   /insight-api/addrs/[:addrs]/balance
   /insight-api/addrs/[:addrs]/totalReceived
   /insight-api/addrs/[:addrs]/totalSent
@@ -521,7 +522,7 @@ Sample output:
     AbsoluteYesCount: 40,
     YesCount: 40,
     NoCount: 0,
-    AbstainCount: 0 
+    AbstainCount: 0
   }
 ]
 ```
@@ -726,7 +727,7 @@ Sample output:
   /insight-api/peer
 ```
 
-### Status of the Bitcoin Network
+### Status of the Dash Network
 
 ```
   /insight-api/status?q=xxx
@@ -737,6 +738,7 @@ Where "xxx" can be:
  * getInfo
  * getDifficulty
  * getBestBlockHash
+ * getBestChainLock
  * getLastBlockHash
 
 ### Utility Methods
@@ -786,7 +788,7 @@ Sample output:
 }
 ```
 
-`<bitcoinAddress>`: new transaction concerning <bitcoinAddress> received from network. This event is published in the `<bitcoinAddress>` room.
+`<dashAddress>`: new transaction concerning <dashAddress> received from network. This event is published in the `<dashAddress>` room.
 
 `status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
 
