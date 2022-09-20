@@ -64,7 +64,7 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 ### Prerequisites
 
-- [Dashcore Node Dash 4.x](https://github.com/dashevo/dashcore-node)
+- [Dashcore Node Dash 6.x](https://github.com/dashevo/dashcore-node)
 
 **Note:** You can use an existing Dash data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` need to be enabled in `dash.conf`, as well as a few other additional fields.
 

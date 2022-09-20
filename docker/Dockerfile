@@ -1,10 +1,10 @@
-FROM node:12-alpine
+FROM node:16-alpine
 
 RUN apk add --update --no-cache \
                             git \
                             libzmq \
                             zeromq-dev \
-                            python2 \
+                            python3 \
                             make \
                             g++
 
@@ -24,7 +24,7 @@ RUN npm ci
 # Install Insight API module
 RUN bin/dashcore-node install @dashevo/insight-api@${VERSION}
 
-FROM node:12-alpine
+FROM node:16-alpine
 
 LABEL maintainer="Dash Developers <dev@dash.org>"
 LABEL description="Dockerised Insight API"
