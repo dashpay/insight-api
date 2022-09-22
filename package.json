@@ -1,7 +1,7 @@
 {
   "name": "@dashevo/insight-api",
   "description": "A Dash blockchain REST and WebSocket API Service",
-  "version": "3.2.1",
+  "version": "7.0.0",
   "repository": "git://github.com/dashevo/insight-api.git",
   "contributors": [
     {
