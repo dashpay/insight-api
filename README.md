@@ -257,14 +257,9 @@ GET method:
 
 POST method:
 
-```
-  /insight-api/addrs/utxo
-```
-
-POST params:
-
-```
-addrs: ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx
+```bash
+curl -X POST "${DOMAIN}/insight-api/addrs/utxo" \
+    --data-urlencode 'addrs=ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx'
 ```
 
 ### InstantSend Transactions
@@ -273,7 +268,7 @@ If a Transaction Lock has been observed by Insight API a 'txlock' value of true 
 
 Sample output:
 
-```
+```json5
 {
 	"txid": "b7ef92d1dce458276f1189e06bf532eff78f9c504101d3d4c0dfdcd9ebbf3879",
 	"version": 1,
