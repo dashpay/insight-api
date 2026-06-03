@@ -809,14 +809,14 @@ Sample output:
 
 ### Example Usage
 
-The following html page connects to the socket.io insight API and listens for new transactions.
+The following html page connects to the socket.io insight API and listens for new InstantSend transactions.
 
 ```html
 <html>
 <body>
   <script src="http://<insight-server>:<port>/socket.io/socket.io.js"></script>
   <script>
-    eventToListenTo = 'tx'
+    eventToListenTo = 'txlock'
     room = 'inv'
 
     var socket = io("http://<insight-server>:<port>/");
@@ -825,11 +825,7 @@ The following html page connects to the socket.io insight API and listens for ne
       socket.emit('subscribe', room);
     })
     socket.on(eventToListenTo, function(data) {
-      if (data.txlock) {
-        console.log("New InstantSend transaction received: " + data.txid)
-      } else {
-        console.log("New transaction received: " + data.txid)
-      }
+      console.log("New InstantSend transaction received: " + data.txid)
     })
   </script>
 </body>
