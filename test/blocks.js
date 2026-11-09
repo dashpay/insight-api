@@ -480,7 +480,7 @@ describe('#_getBlockSummary', function() {
   function controllerFor(rawHex, height) {
     return new BlockController({
       node: {
-        log: sinon.stub(),
+        log: {warn: sinon.stub()},
         services: {
           dashd: {
             height: height + 10,
@@ -507,13 +507,48 @@ describe('#_getBlockSummary', function() {
     });
   });
 
-  it('gives an error for a block it cannot parse', function(done) {
+  it('gives an error for a block whose header it cannot parse', function(done) {
     var fixture = v24ActivationBlocks[1578000];
-    var blocks = controllerFor(fixture.raw.slice(0, 300), 1578000);
+    var blocks = controllerFor(fixture.raw.slice(0, 100), 1578000);
     blocks._getBlockSummary(fixture.hash, Infinity, function(err, summary) {
       err.should.be.instanceof(Error);
       err.message.should.startWith('Failed to parse block ' + fixture.hash);
       should.not.exist(summary);
+      done();
+    });
+  });
+
+  it('still summarizes a block whose coinbase it cannot parse', function(done) {
+    var fixture = v24ActivationBlocks[1578000];
+    var blocks = controllerFor(fixture.raw.slice(0, 300), 1578000);
+    blocks._getBlockSummary(fixture.hash, Infinity, function(err, summary) {
+      should.not.exist(err);
+      summary.hash.should.equal(fixture.hash);
+      summary.txlength.should.equal(3);
+      summary.poolInfo.should.eql({});
+      blocks.node.log.warn.callCount.should.equal(1);
+      done();
+    });
+  });
+});
+
+describe('#getBlockReward', function() {
+  it('passes a header lookup error to the callback once', function(done) {
+    var blocks = new BlockController({
+      node: {
+        log: sinon.stub(),
+        services: {
+          dashd: {
+            getBlockHeader: sinon.stub().callsArgWith(1, new Error('not found'))
+          }
+        }
+      }
+    });
+    var cb = sinon.spy();
+    blocks.getBlockReward('00000000000000000000000000000000000000000000000000000000000000aa', cb);
+    setImmediate(function() {
+      cb.callCount.should.equal(1);
+      cb.args[0][0].message.should.equal('not found');
       done();
     });
   });

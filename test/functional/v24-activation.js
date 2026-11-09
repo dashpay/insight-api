@@ -8,6 +8,7 @@
 
 var assert = require('assert');
 var childProcess = require('child_process');
+var EventEmitter = require('events').EventEmitter;
 var fs = require('fs');
 var net = require('net');
 var os = require('os');
@@ -58,6 +59,10 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   var pre = {};
   var post = {};
   var txMempool;
+  var invTxids = [];
+  var badTxLogs = [];
+  var consoleLog = console.log;
+  var failed = false;
 
   function rpc(method) {
     var params = Array.prototype.slice.call(arguments, 1);
@@ -101,17 +106,36 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   async function blockAt(height) {
     var hash = await rpc('getblockhash', height);
     var block = await rpc('getblock', hash, 2);
-    return {hash: hash, height: height, coinbase: block.tx[0].txid, cbTxVersion: block.cbTx.version};
+    return {
+      hash: hash,
+      height: height,
+      time: block.time,
+      coinbase: block.tx[0].txid,
+      cbTxVersion: block.cbTx.version
+    };
   }
 
-  async function waitForInsightTip(hash) {
-    for (var i = 0; i < 120; i++) {
-      if (node.services.dashd.tiphash === hash) {
-        return;
+  // dashcore-node defers tip updates that arrive within a second of each
+  // other, so wait until the tip has settled.
+  async function waitForInsightTip(hash, height) {
+    var since = null;
+    for (var i = 0; i < 300; i++) {
+      var service = node.services.dashd;
+      if (service.tiphash === hash && service.height === height) {
+        since = since || Date.now();
+        if (Date.now() - since > 1500) {
+          return;
+        }
+      } else {
+        since = null;
       }
-      await sleep(250);
+      await sleep(100);
     }
-    throw new Error('Insight did not reach tip ' + hash);
+    throw new Error('Insight did not settle on tip ' + height + ' ' + hash);
+  }
+
+  function utcDate(time) {
+    return new Date(time * 1000).toISOString().slice(0, 10);
   }
 
   function voutTo(tx, address) {
@@ -202,8 +226,24 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
       });
     });
 
-    // Before activation: fund A.
+    // Record what Insight pushes to its websocket subscribers, and any
+    // transaction it fails to parse.
+    var inv = new EventEmitter();
+    inv.on('tx', function(tx) {
+      invTxids.push(tx.txid);
+    });
+    node.services['@dashevo/insight-api'].subscribe(inv);
+    console.log = function(message) {
+      if (String(message).indexOf('bad txBuffer') !== -1) {
+        badTxLogs.push(message);
+      }
+      return consoleLog.apply(console, arguments);
+    };
+
+    // Before activation: fund A, and keep the wallet from spending that output.
     pre.tx = await rpc('sendtoaddress', addrA, 1.5);
+    var preVout = voutTo(await rpc('getrawtransaction', pre.tx, true), addrA)[0].n;
+    await rpc('lockunspent', false, [{txid: pre.tx, vout: preVout}]);
     await mine(1);
     pre.block = await blockAt(441);
 
@@ -212,8 +252,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
 
     // After activation: fund A again and spend A's pre-activation output to B.
     post.tx = await rpc('sendtoaddress', addrA, 2.25);
-    var preTx = await rpc('getrawtransaction', pre.tx, true);
-    var preVout = voutTo(preTx, addrA)[0].n;
+    var postVout = voutTo(await rpc('getrawtransaction', post.tx, true), addrA)[0].n;
     var raw = await rpc('createrawtransaction',
       [{txid: pre.tx, vout: preVout}],
       [{[addrB]: 1.4999}]);
@@ -222,12 +261,27 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
     await mine(1);
     post.block = await blockAt(V24_HEIGHT + 1);
 
+    // Fund the mempool transaction from the miner, not from A or B.
+    await rpc('lockunspent', false, [{txid: post.tx, vout: postVout}, {txid: post.spend, vout: 0}]);
     txMempool = await rpc('sendtoaddress', addrA, 0.5);
 
-    await waitForInsightTip(post.block.hash);
+    await waitForInsightTip(post.block.hash, post.block.height);
+  });
+
+  afterEach(function() {
+    if (this.currentTest.state === 'failed') {
+      failed = true;
+    }
   });
 
   after(async function() {
+    console.log = consoleLog;
+    if (failed && datadir) {
+      var debugLog = path.join(datadir, 'regtest', 'debug.log');
+      if (fs.existsSync(debugLog)) {
+        console.error('--- tail of dashd debug.log ---\n' + fs.readFileSync(debugLog, 'utf8').split('\n').slice(-200).join('\n'));
+      }
+    }
     if (node) {
       await new Promise(function(resolve) {
         node.stop(function() {
@@ -235,7 +289,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
         });
       });
     }
-    if (dashd && dashd.exitCode === null) {
+    if (dashd && dashd.exitCode === null && dashd.signalCode === null) {
       var exited = new Promise(function(resolve) {
         dashd.once('exit', resolve);
       });
@@ -276,7 +330,16 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   });
 
   it('GET /blocks lists blocks from both sides of the activation', async function() {
-    var res = await api('/blocks?limit=100');
+    var dates = [pre.block, post.block].map(function(b) {
+      return utcDate(b.time);
+    }).filter(function(date, i, all) {
+      return all.indexOf(date) === i;
+    });
+    var listed = [];
+    for (var i = 0; i < dates.length; i++) {
+      listed = listed.concat((await api('/blocks?limit=200&blockDate=' + dates[i])).blocks);
+    }
+    var res = {blocks: listed};
     var heights = res.blocks.map(function(b) {
       return b.height;
     });
@@ -379,6 +442,21 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
     assert.strictEqual(sync.height, post.block.height);
   });
 
+  it('GET /rawtx/:txid returns Core\'s bytes for the CbTx v4 coinbase and a spend', async function() {
+    var txids = [post.block.coinbase, post.spend];
+    for (var i = 0; i < txids.length; i++) {
+      var raw = await api('/rawtx/' + txids[i]);
+      assert.strictEqual(raw.rawtx, await rpc('getrawtransaction', txids[i], false));
+    }
+  });
+
+  it('pushes post-activation transactions to websocket subscribers without parse errors', function() {
+    [pre.tx, pre.block.coinbase, post.activation.coinbase, post.tx, post.spend, post.block.coinbase, txMempool].forEach(function(txid) {
+      assert.ok(invTxids.indexOf(txid) !== -1, txid + ' pushed');
+    });
+    assert.deepStrictEqual(badTxLogs, []);
+  });
+
   it('other Core-backed endpoints still answer on v24', async function() {
     var routes = [
       '/status?q=getDifficulty',
@@ -388,8 +466,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
       '/gobject/info',
       '/gobject/count',
       '/gobject/list',
-      '/governance/budget/' + post.block.height,
-      '/rawtx/' + post.spend
+      '/governance/budget/' + post.block.height
     ];
     for (var i = 0; i < routes.length; i++) {
       await api(routes[i]);
