@@ -146,6 +146,15 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   }
 
   before(async function() {
+    try {
+      await setup();
+    } catch (e) {
+      failed = true;
+      throw e;
+    }
+  });
+
+  async function setup() {
     if (!dashdPath || !dashcoreNodePath) {
       throw new Error('Set DASHD_PATH to a Dash Core v24 dashd binary and DASHCORE_NODE_PATH to a dashcore-node checkout');
     }
@@ -266,7 +275,15 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
     txMempool = await rpc('sendtoaddress', addrA, 0.5);
 
     await waitForInsightTip(post.block.hash, post.block.height);
-  });
+
+    // Websocket events come over the separate ZMQ rawtx path.
+    post.inv = [pre.tx, pre.block.coinbase, post.activation.coinbase, post.tx, post.spend, post.block.coinbase, txMempool];
+    for (var n = 0; n < 100 && !post.inv.every(function(txid) {
+      return invTxids.indexOf(txid) !== -1;
+    }); n++) {
+      await sleep(100);
+    }
+  }
 
   afterEach(function() {
     if (this.currentTest.state === 'failed') {
@@ -451,7 +468,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   });
 
   it('pushes post-activation transactions to websocket subscribers without parse errors', function() {
-    [pre.tx, pre.block.coinbase, post.activation.coinbase, post.tx, post.spend, post.block.coinbase, txMempool].forEach(function(txid) {
+    post.inv.forEach(function(txid) {
       assert.ok(invTxids.indexOf(txid) !== -1, txid + ' pushed');
     });
     assert.deepStrictEqual(badTxLogs, []);
