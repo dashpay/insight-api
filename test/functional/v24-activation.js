@@ -92,7 +92,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
     return JSON.parse(text);
   }
 
-  async function mine(count) {
+  function mine(count) {
     return rpc('generatetoaddress', count, miner);
   }
 
@@ -132,10 +132,6 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
       await sleep(100);
     }
     throw new Error('Insight did not settle on tip ' + height + ' ' + hash);
-  }
-
-  function utcDate(time) {
-    return new Date(time * 1000).toISOString().slice(0, 10);
   }
 
   function voutTo(tx, address) {
@@ -348,7 +344,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
 
   it('GET /blocks lists blocks from both sides of the activation', async function() {
     var dates = [pre.block, post.block].map(function(b) {
-      return utcDate(b.time);
+      return new Date(b.time * 1000).toISOString().slice(0, 10);
     }).filter(function(date, i, all) {
       return all.indexOf(date) === i;
     });
@@ -356,14 +352,13 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
     for (var i = 0; i < dates.length; i++) {
       listed = listed.concat((await api('/blocks?limit=200&blockDate=' + dates[i])).blocks);
     }
-    var res = {blocks: listed};
-    var heights = res.blocks.map(function(b) {
+    var heights = listed.map(function(b) {
       return b.height;
     });
     [pre.block.height, V24_HEIGHT - 1, V24_HEIGHT, post.block.height].forEach(function(height) {
       assert.ok(heights.indexOf(height) !== -1, 'height ' + height + ' listed');
     });
-    var summary = res.blocks.find(function(b) {
+    var summary = listed.find(function(b) {
       return b.height === post.block.height;
     });
     assert.strictEqual(summary.hash, post.block.hash);
@@ -409,8 +404,7 @@ describe('Insight API across the V24 activation (CbTx v4)', function() {
   });
 
   it('GET /txs?block= lists a post-activation block', async function() {
-    var res = await api('/txs?block=' + post.block.hash);
-    var txids = res.txs.map(function(tx) {
+    var txids = (await api('/txs?block=' + post.block.hash)).txs.map(function(tx) {
       return tx.txid;
     });
     assert.deepStrictEqual(txids.slice().sort(), [post.block.coinbase, post.tx, post.spend].sort());
