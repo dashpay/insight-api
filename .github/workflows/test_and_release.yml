@@ -43,7 +43,7 @@ jobs:
     env:
       DASH_VERSION: 24.0.0
       DASH_SHA256: 1ffce395e035fb2ee617c92e6eeaab139ca3d10db6f83d4e816136b726512c5e
-      DASHCORE_NODE_REF: 2027c2d72d3f080591457d137e1780dafc95f304
+      DASHCORE_NODE_REF: 6b165203b9b0eb2bd338bb92e9ddee2708f75b97
     steps:
       - uses: actions/checkout@v4
 
