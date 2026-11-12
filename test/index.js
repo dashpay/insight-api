@@ -24,6 +24,22 @@ describe('Index', function() {
       index.disableRateLimiter.should.equal(true);
     });
   });
+  describe('#transactionEventHandler', function() {
+    it('will skip a transaction it cannot parse', function() {
+      var index = new InsightAPI({node: {}});
+      var emitter = {emit: sinon.stub()};
+      index.subscriptions.inv.push(emitter);
+      var log = sinon.stub(console, 'log');
+      try {
+        index.transactionEventHandler(Buffer.from('03000500ff', 'hex'));
+        index.transactionLockEventHandler(Buffer.from('03000500ff', 'hex'));
+      } finally {
+        log.restore();
+      }
+      emitter.emit.callCount.should.equal(0);
+      log.callCount.should.equal(2);
+    });
+  });
   describe('#_getRateLimiter', function() {
     it('will pass options to rate limiter', function() {
       var options = {

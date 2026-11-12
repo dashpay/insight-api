@@ -1,7 +1,7 @@
 {
   "name": "@dashevo/insight-api",
   "description": "A Dash blockchain REST and WebSocket API Service",
-  "version": "4.0.8",
+  "version": "4.0.9",
   "repository": "git://github.com/dashevo/insight-api.git",
   "contributors": [
     {
@@ -56,11 +56,12 @@
     "node": ">=6"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha -R spec --recursive"
+    "test": "NODE_ENV=test mocha -R spec --recursive --exclude \"test/functional/**\"",
+    "test:functional": "NODE_ENV=test mocha -R spec --exit test/functional"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@dashevo/dashcore-lib": "^0.22.0",
+    "@dashevo/dashcore-lib": "^0.26.1",
     "async": "^2.6.2",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

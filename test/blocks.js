@@ -474,3 +474,82 @@ describe('#getHeaders', function(){
 		});
 	});
 });
+describe('#_getBlockSummary', function() {
+  var v24ActivationBlocks = require('./data/testnet-v24-activation-blocks.json');
+
+  function controllerFor(rawHex, height) {
+    return new BlockController({
+      node: {
+        log: {warn: sinon.stub()},
+        services: {
+          dashd: {
+            height: height + 10,
+            getRawBlock: sinon.stub().callsArgWith(1, null, Buffer.from(rawHex, 'hex')),
+            getBlockHeader: sinon.stub().callsArgWith(1, null, {height: height})
+          }
+        }
+      }
+    });
+  }
+
+  [1577999, 1578000].forEach(function(height) {
+    var fixture = v24ActivationBlocks[height];
+    it('summarizes testnet block ' + height + ' with a CbTx v' + fixture.cbTxVersion + ' coinbase', function(done) {
+      var blocks = controllerFor(fixture.raw, height);
+      blocks._getBlockSummary(fixture.hash, Infinity, function(err, summary) {
+        should.not.exist(err);
+        summary.height.should.equal(height);
+        summary.hash.should.equal(fixture.hash);
+        summary.size.should.equal(fixture.raw.length / 2);
+        summary.txlength.should.equal(dashcore.Block.fromString(fixture.raw).transactions.length);
+        done();
+      });
+    });
+  });
+
+  it('gives an error for a block whose header it cannot parse', function(done) {
+    var fixture = v24ActivationBlocks[1578000];
+    var blocks = controllerFor(fixture.raw.slice(0, 100), 1578000);
+    blocks._getBlockSummary(fixture.hash, Infinity, function(err, summary) {
+      err.should.be.instanceof(Error);
+      err.message.should.startWith('Failed to parse block ' + fixture.hash);
+      should.not.exist(summary);
+      done();
+    });
+  });
+
+  it('still summarizes a block whose coinbase it cannot parse', function(done) {
+    var fixture = v24ActivationBlocks[1578000];
+    var blocks = controllerFor(fixture.raw.slice(0, 300), 1578000);
+    blocks._getBlockSummary(fixture.hash, Infinity, function(err, summary) {
+      should.not.exist(err);
+      summary.hash.should.equal(fixture.hash);
+      summary.txlength.should.equal(3);
+      summary.poolInfo.should.eql({});
+      blocks.node.log.warn.callCount.should.equal(1);
+      done();
+    });
+  });
+});
+
+describe('#getBlockReward', function() {
+  it('passes a header lookup error to the callback once', function(done) {
+    var blocks = new BlockController({
+      node: {
+        log: sinon.stub(),
+        services: {
+          dashd: {
+            getBlockHeader: sinon.stub().callsArgWith(1, new Error('not found'))
+          }
+        }
+      }
+    });
+    var cb = sinon.spy();
+    blocks.getBlockReward('00000000000000000000000000000000000000000000000000000000000000aa', cb);
+    setImmediate(function() {
+      cb.callCount.should.equal(1);
+      cb.args[0][0].message.should.equal('not found');
+      done();
+    });
+  });
+});

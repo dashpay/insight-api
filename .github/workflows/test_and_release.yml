@@ -13,17 +13,17 @@ on:
 jobs:
   test:
     name: Run Insight API tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Enable NPM cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: '~/.npm'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -36,13 +36,62 @@ jobs:
       - name: Run tests
         run: npm run test
 
+  functional:
+    name: Run Insight API functional tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      DASH_VERSION: 24.0.0
+      DASH_SHA256: 1ffce395e035fb2ee617c92e6eeaab139ca3d10db6f83d4e816136b726512c5e
+      DASHCORE_NODE_REF: 6b165203b9b0eb2bd338bb92e9ddee2708f75b97
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: dashpay/dashcore-node
+          ref: ${{ env.DASHCORE_NODE_REF }}
+          path: dashcore-node
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enable NPM cache
+        uses: actions/cache@v4
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install NPM dependencies
+        run: |
+          npm ci
+          npm ci --prefix dashcore-node
+          echo "DASHCORE_NODE_PATH=$PWD/dashcore-node" >> "$GITHUB_ENV"
+
+      - name: Download Dash Core
+        run: |
+          curl -fsSL -o dashcore.tar.gz "https://github.com/dashpay/dash/releases/download/v${DASH_VERSION}/dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
+          echo "${DASH_SHA256}  dashcore.tar.gz" | sha256sum -c -
+          tar xzf dashcore.tar.gz
+          echo "DASHD_PATH=$PWD/dashcore-${DASH_VERSION}/bin/dashd" >> "$GITHUB_ENV"
+
+      - name: Run functional tests
+        run: npm run test:functional
+
   release-npm:
     name: Release NPM package
-    runs-on: ubuntu-20.04
-    needs: test
+    runs-on: ubuntu-24.04
+    needs: [test, functional]
     if: ${{ github.event_name == 'release' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Check package version matches tag
         uses: geritol/match-tag-to-package-version@0.1.0
@@ -50,7 +99,7 @@ jobs:
           TAG_PREFIX: refs/tags/v
 
       - name: Enable NPM cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: '~/.npm'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -61,7 +110,7 @@ jobs:
         run: npm ci
 
       - name: Set release tag
-        uses: actions/github-script@v3
+        uses: actions/github-script@v7
         id: tag
         with:
           result-encoding: string
@@ -71,31 +120,29 @@ jobs:
             return (tag.includes('dev') ? `${major}.${minor}-dev` : 'latest');
 
       - name: Publish NPM package
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: ${{ steps.tag.outputs.result }}
 
   release-docker:
     name: Release Docker image
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: release-npm
     if: ${{ github.event_name == 'release' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker BuildX
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
         with:
-          version: v0.7.0
-          install: true
           driver-opts: image=moby/buildkit:buildx-stable-1
 
       - name: Cache Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -103,13 +150,13 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set suffix to Docker tags
-        uses: actions/github-script@v3
+        uses: actions/github-script@v7
         id: suffix
         with:
           result-encoding: string
@@ -117,7 +164,7 @@ jobs:
 
       - name: Set Docker tags and labels
         id: docker_meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v5
         with:
           images: dashpay/insight-api
           tags: |
@@ -131,7 +178,7 @@ jobs:
 
       - name: Build and push Docker image
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: docker
           file: docker/Dockerfile
