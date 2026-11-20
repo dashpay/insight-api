@@ -2,7 +2,10 @@
   "name": "@dashevo/insight-api",
   "description": "A Dash blockchain REST and WebSocket API Service",
   "version": "4.0.9",
-  "repository": "git://github.com/dashevo/insight-api.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashpay/insight-api.git"
+  },
   "contributors": [
     {
       "name": "Gustavo Cortez",
