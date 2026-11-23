@@ -145,12 +145,14 @@ jobs:
       # npm does the OIDC exchange on a dry run too, and without a token a dry
       # run only warns, so the result is read from npm's verbose log. The text
       # matched is the one printed by the npm that ships with the Node version
-      # pinned above.
+      # pinned above. The explicit --tag is needed because npm rejects a
+      # prerelease version without one before the exchange; a dry run never
+      # applies it.
       - name: Rehearse the publish
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           LOG="$RUNNER_TEMP/npm-publish-dry-run.log"
-          npm publish --dry-run --ignore-scripts --access public --loglevel verbose 2>&1 | tee "$LOG"
+          npm publish --dry-run --ignore-scripts --access public --tag rehearsal --loglevel verbose 2>&1 | tee "$LOG"
           if ! grep -q 'oidc Successfully retrieved and set token' "$LOG"; then
             echo "::error::npm did not accept this workflow as a trusted publisher of this package. See the oidc lines above."
             exit 1
